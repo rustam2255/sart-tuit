@@ -146,27 +146,35 @@ const Departments = ({ newTabData }) => {
 
   return (
     <div className="py-16">
-      {/* Teacher counts va foreign teachers */}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <TeacherCountDepart departmentLocale={departmentLocale?.data} />
         <ForegnTeacherDepart departmentGlobal={departmentGlobal?.data} />
       </div>
 
-      {/* Academic percentage chart */}
+
       <ColumnDepart
         departmentAcademicPercentage={departmentAcademicPercentage?.data}
       />
 
-      {/* Fakultetdagi asosiy professor-o‘qituvchilar soni */}
+
       <h1 className="text-2xl font-semibold mt-12 mb-5 text-center">
         Fakultetdagi asosiy shtatdagi professor-o‘qituvchilar soni:{" "}
         {facultyData?.reduce((sum, item) => sum + item.number, 0)} nafar
       </h1>
 
-      {/* Department cards */}
-      <div className="flex flex-col sm:flex-row flex-wrap gap-6 justify-center">
+
+      <div className="flex gap-6 justify-center sm:mb-12">
         {facultyData.map((item) => (
-          <DepartNameCard key={item.id} item={item} className="w-full sm:w-auto" />
+          <DepartNameCard
+            key={item.id}
+            item={item}
+            className="
+        w-full       
+        sm:w-1/2     
+        lg:w-1/5     
+      "
+          />
         ))}
       </div>
       <Tabs
@@ -186,7 +194,7 @@ const Departments = ({ newTabData }) => {
               </span>
             }
           >
-            {/* Tab content container */}
+
             <div className="w-full min-w-full">
               {tab.content}
             </div>
