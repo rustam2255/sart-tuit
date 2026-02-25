@@ -59,7 +59,7 @@ const StudentsNation = ({ foreignLocalData }) => {
           borderRadius: "20%",
           borderWidth: 1,
           dataLabels: {
-            enabled: true,
+            enabled: window.innerWidth > 640, 
             format: "{point.y}",
             style: {
               fontSize: fontSize,

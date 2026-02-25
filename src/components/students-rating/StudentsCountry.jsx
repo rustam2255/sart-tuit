@@ -92,7 +92,7 @@ const StudentsCountry = ({ citizentshipData }) => {
     },
     legend: {
       layout: "vertical",
-      align: "left",
+      align: "center",
       verticalAlign: "bottom",
       itemStyle: {
         fontWeight: "bold",

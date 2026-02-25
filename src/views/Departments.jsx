@@ -146,53 +146,50 @@ const Departments = ({ newTabData }) => {
 
   return (
     <div className="py-16">
-      <div className="grid grid-cols-2 gap-6 ">
+      {/* Teacher counts va foreign teachers */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <TeacherCountDepart departmentLocale={departmentLocale?.data} />
         <ForegnTeacherDepart departmentGlobal={departmentGlobal?.data} />
       </div>
+
+      {/* Academic percentage chart */}
       <ColumnDepart
         departmentAcademicPercentage={departmentAcademicPercentage?.data}
       />
 
+      {/* Fakultetdagi asosiy professor-o‘qituvchilar soni */}
       <h1 className="text-2xl font-semibold mt-12 mb-5 text-center">
-        Fakultetdagi asosiy shtatdagi professor-o‘qituvchilar soni: {facultyData?.reduce(
-          (sum, item) => sum + item.number,
-          0
-        )} nafar
+        Fakultetdagi asosiy shtatdagi professor-o‘qituvchilar soni:{" "}
+        {facultyData?.reduce((sum, item) => sum + item.number, 0)} nafar
       </h1>
-      <div className="flex gap-6 mb-12 justify-center">
-        {facultyData.map((item) => {
-          return <DepartNameCard key={item.id} item={item} />;
-        })}
+
+      {/* Department cards */}
+      <div className="flex flex-col sm:flex-row flex-wrap gap-6 justify-center">
+        {facultyData.map((item) => (
+          <DepartNameCard key={item.id} item={item} className="w-full sm:w-auto" />
+        ))}
       </div>
       <Tabs
         type="line"
-        tabBarGutter={50}
-        tabBarStyle={{
-          // display: "flex",
-          // justifyContent: "space-around",
-          // flex: "1",
-          width: "100%",
-        }}
         activeKey={activeTab}
         onChange={onTabChange}
+        tabBarGutter={20}
+        className="responsive-tabs w-full overflow-x-hidden"
+        moreIcon={null}
       >
         {tabData.map((tab) => (
           <TabPane
-            tab={
-              <p
-                style={{
-                  textTransform: "uppercase",
-                  fontSize: "16px",
-                  fontWeight: "500",
-                }}
-              >
-                {tab.title}
-              </p>
-            }
             key={tab.key}
+            tab={
+              <span className="flex-none whitespace-nowrap px-4 sm:px-6 text-[14px] sm:text-[16px] font-medium uppercase">
+                {tab.title}
+              </span>
+            }
           >
-            {tab.content}
+            {/* Tab content container */}
+            <div className="w-full min-w-full">
+              {tab.content}
+            </div>
           </TabPane>
         ))}
       </Tabs>

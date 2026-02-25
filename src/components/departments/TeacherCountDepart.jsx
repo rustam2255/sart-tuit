@@ -17,17 +17,18 @@ const data = [
 ];
 
 VariablePie(Highcharts);
+
 const TeacherCountDepart = ({ departmentLocale }) => {
   const newData = [];
 
   for (let i = 0; i < departmentLocale?.length; i++) {
-    let newObj = {
+    newData.push({
       name: departmentLocale[i]?.department_name,
       y: departmentLocale[i]?.teachers_count,
       color: data[i].color,
-    };
-    newData.push(newObj);
+    });
   }
+
   const options = {
     chart: {
       type: "variablepie",
@@ -85,16 +86,38 @@ const TeacherCountDepart = ({ departmentLocale }) => {
       },
       symbolHeight: 12,
     },
+    responsive: {
+      rules: [
+        {
+          condition: { maxWidth: 640 }, // mobil
+          chartOptions: {
+            chart: {
+              height: "300px", // mobil diagram tor
+            },
+            plotOptions: {
+              variablepie: {
+                innerSize: "50%",
+                dataLabels: {
+                  distance: 10,
+                  style: { fontSize: "14px" },
+                },
+              },
+            },
+            legend: { itemStyle: { fontSize: "12px" } },
+          },
+        },
+      ],
+    },
   };
 
   return (
-    <div className="border-[1px] border-[rgba(232, 232, 232, 1)] p-6 rounded-lg relative">
-      <HighchartsReact highcharts={Highcharts} options={options} />
-      <div className="absolute bottom-5 right-5">
-        <p className="text-[#505050] font-bold text-lg">Jami: {departmentLocale?.reduce(
-        (sum, item) => sum + item.teachers_count,
-        0
-      )} nafar</p>
+    <div className="border-[1px] border-[rgba(232, 232, 232, 1)] rounded-lg p-4 sm:p-6 flex justify-center">
+      {/* Highcharts container markazlashgan */}
+      <div className="w-full max-w-[400px] sm:max-w-full">
+        <HighchartsReact highcharts={Highcharts} options={options} />
+        <div className="text-right mt-2 text-[#505050] font-bold text-base sm:text-lg">
+          Jami: {departmentLocale?.reduce((sum, item) => sum + item.teachers_count, 0)} nafar
+        </div>
       </div>
     </div>
   );

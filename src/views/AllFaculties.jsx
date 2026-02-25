@@ -54,17 +54,13 @@ const AllFaculties = () => {
     <div className="pt-10">
       <div className="mb-5 ml-2 flex items-center gap-4">
         <Breadcrumb
-          style={{
-            fontSize: "17px",
-            textTransform: "uppercase",
-            fontWeight: "500",
-          }}
+          className="text-[17px] font-medium uppercase"
           separator={<i className="fa-solid fa-arrow-right-long"></i>}
           items={[
             {
               title: (
-                <Link to="/">
-                  <i className="fa-solid fa-house text-xl inline-block mr-2"></i>
+                <Link to="/" className="flex items-center gap-2">
+                  <i className="fa-solid fa-house text-xl"></i>
                   Asosiy
                 </Link>
               ),
@@ -76,31 +72,28 @@ const AllFaculties = () => {
         />
       </div>
 
-      <div className="overflow-x-auto lg:overflow-x-visible">
+      {/* Tabs container */}
+      <div className="w-full overflow-x-hidden">
         <Tabs
           type="line"
-          centered={true} 
-          tabBarGutter={24}
+          tabBarGutter={20}
+          className="responsive-tabs w-full"
           activeKey={activeTab}
           onChange={onTabChange}
           moreIcon={null}
         >
           {tabData.map((tab) => (
             <TabPane
-              tab={
-                <p
-                  style={{
-                    textTransform: "uppercase",
-                    fontSize: "16px",
-                    fontWeight: "500",
-                  }}
-                >
-                  {tab.title}
-                </p>
-              }
               key={tab.key}
+              tab={
+                <span className="flex-none whitespace-nowrap px-4 text-[14px] sm:text-[16px] font-medium uppercase">
+                  {tab.title}
+                </span>
+              }
             >
-              {tab.content}
+              <div className="w-full min-w-full">
+                {tab.content}
+              </div>
             </TabPane>
           ))}
         </Tabs>

@@ -63,28 +63,35 @@ const FacultyCountTeachers = ({facultyData}) => {
     //   },
     // },
     plotOptions: {
-      series: {
-        allowPointSelect: true,
-        cursor: "pointer",
-        borderRadius: 8,
-        dataLabels: [
-          {
-            enabled: true,
-            distance: 20,
-            format: "{point.name}",
-          },
-          {
-            enabled: true,
-            distance: -30,
-            format: "{point.percentage:.0f}%",
-            style: {
-              fontSize: "0.9em",
-            },
-          },
-        ],
-        showInLegend: true,
+  series: {
+    allowPointSelect: true,
+    cursor: "pointer",
+    borderRadius: 8,
+    dataLabels: [
+      {
+        distance: 20,
+        style: {
+          fontSize: "0.9em",
+        },
+        formatter() {
+          return window.innerWidth > 640 ? this.point.name : null;
+        },
       },
-    },
+      {
+        distance: -30,
+        style: {
+          fontSize: "0.9em",
+        },
+        formatter() {
+          return window.innerWidth > 640
+            ? `${Math.round(this.point.percentage)}%`
+            : null;
+        },
+      },
+    ],
+    showInLegend: true,
+  },
+},
     legend: {
       labelFormatter: function () {
         return this.name + " - " + this.y; 

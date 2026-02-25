@@ -22,7 +22,7 @@ const FacultyPositionTeachers = ({ data: { faculty, percentage } }) => {
       crosshair: true,
       labels: {
         style: {
-          fontWeight: "bold", 
+          fontWeight: "bold",
         },
       },
     },
@@ -53,8 +53,12 @@ const FacultyPositionTeachers = ({ data: { faculty, percentage } }) => {
         pointPadding: 0.1,
         borderWidth: 0,
         dataLabels: {
-          format: "{point.y:.1f}%",
           enabled: true,
+          allowOverlap: false, 
+          formatter() {
+            
+            return window.innerWidth > 640 ? `${this.y.toFixed(1)}%` : null;
+          },
           style: {
             fontSize: "16px",
             fontWeight: "bold",
@@ -77,7 +81,7 @@ const FacultyPositionTeachers = ({ data: { faculty, percentage } }) => {
       {
         name: "Salohiyati",
         data: percentage,
-        colorByPoint: true, // Enable different colors for each column
+        colorByPoint: true,
         colors: [
           "#FF6F61 ",
           "#F7DC6F",

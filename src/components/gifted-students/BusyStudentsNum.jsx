@@ -8,9 +8,11 @@ const BusyStudentsNum = ({ employments }) => {
     company.without = employments[1]?.students;
     company.total = employments[2]?.students;
   }
+
   const options = {
     chart: {
       type: "pie",
+     
     },
     title: {
       text: `ISH BILAN BAND TALABALAR: ${company?.total} nafar`,
@@ -20,24 +22,13 @@ const BusyStudentsNum = ({ employments }) => {
         fontWeight: "bold",
       },
     },
-    // subtitle: {
-    //   text: '314', // The number "314"
-    //   align: 'left',
-    //   verticalAlign: 'top',
-    //   style: {
-    //     fontSize: '40px',
-    //     fontWeight: 'bold',
-    //   },
-    //   x: 0,
-    //   y: 30,
-    // },
     tooltip: {
       pointFormat:
         "{series.name}: <b>{point.percentage:.1f}%</b></br>Soni: <b>{point.y} ta</b>",
     },
     plotOptions: {
       pie: {
-        innerSize: "60%", // Makes it a donut chart
+        innerSize: "60%", 
         dataLabels: {
           enabled: true,
           format: "{point.percentage:.0f}%",
@@ -47,7 +38,7 @@ const BusyStudentsNum = ({ employments }) => {
           },
           distance: -30,
         },
-        showInLegend: true, // Show the legend
+        showInLegend: true,
       },
     },
     series: [
@@ -57,23 +48,20 @@ const BusyStudentsNum = ({ employments }) => {
         data: [
           {
             name: "Ish bilan band talabalar",
-            y: company?.with, // 78% for employed students
-            color: "#007bff", // Blue color for employed
+            y: company?.with,
+            color: "#007bff",
           },
           {
             name: "Ish bilan band bo'lmagan talabalar",
-            y: company?.without, // 22% for unemployed students
-            color: "#e9ecef", // Light grey color for unemployed
+            y: company?.without,
+            color: "#e9ecef",
           },
         ],
       },
     ],
     legend: {
-      align: "left",
-      layout: "vertical",
-      labelFormatter: function () {
-        return this.name + " - " + this.y;
-      },
+      align: "center", 
+      layout: "horizontal", 
       verticalAlign: "bottom",
       itemStyle: {
         fontWeight: "bold",
@@ -81,10 +69,50 @@ const BusyStudentsNum = ({ employments }) => {
       },
       symbolHeight: 12,
     },
+
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 480, 
+          },
+          chartOptions: {
+            chart: {
+              
+              width: null,
+              height: null,
+            },
+            title: {
+              style: {
+                fontSize: "14px",
+              },
+            },
+            plotOptions: {
+              pie: {
+                innerSize: "50%", 
+                dataLabels: {
+                  distance: -20,
+                  style: {
+                    fontSize: "14px",
+                  },
+                },
+              },
+            },
+            legend: {
+              align: "center", 
+              layout: "horizontal", 
+              itemStyle: {
+                fontSize: "12px",
+              },
+            },
+          },
+        },
+      ],
+    },
   };
 
   return (
-    <div className="border-[1px] border-[rgba(232, 232, 232, 1)] p-6 rounded-lg">
+    <div className="border-[1px] border-[rgba(232, 232, 232, 1)] p-4 sm:p-6 rounded-lg max-w-full mx-auto">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

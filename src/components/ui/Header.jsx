@@ -71,8 +71,8 @@ const Header = () => {
 
   return (
     <>
-      <div className="py-[1.2rem] inter">
-        <header className="w-full flex items-center justify-between">
+      <div className="py-[1rem] md:py-[1.2rem] inter">
+        <header className="w-full flex flex-wrap md:flex-nowrap items-center justify-between gap-3">
 
           {/* LOGO */}
           <div
@@ -82,26 +82,25 @@ const Header = () => {
             <img
               src={logoSrc}
               alt="TUIT logo"
-              className="w-[3.9rem] h-[3.9rem] sm:w-[4rem] sm:h-[4rem] object-cover"
+              className="w-[3rem] h-[3rem] sm:w-[3.5rem] sm:h-[3.5rem] md:w-[3.9rem] md:h-[3.9rem] object-cover"
             />
 
-           
-            <div className="hidden md:block">
-              <div className="text-[0.857rem] text-[#1E1E1EB2] font-[500] leading-[1.1rem] uppercase">
+            <div className="hidden lg:block">
+              <div className="text-[0.75rem] md:text-[0.857rem] text-[#1E1E1EB2] font-[500] uppercase">
                 MUHAMMAD AL-XORAZMIY NOMIDAGI
               </div>
-              <div className="text-[0.857rem] text-[#1E1E1EB2] font-[500] leading-[1.1rem] uppercase">
+              <div className="text-[0.75rem] md:text-[0.857rem] text-[#1E1E1EB2] font-[500] uppercase leading-tight">
                 Toshkent axborot <br /> texnologiyalari universiteti
               </div>
             </div>
           </div>
 
-         
-          <nav className="flex items-center gap-3 sm:gap-4 md:gap-6">
+          {/* NAV */}
+          <nav className="flex flex-wrap md:flex-nowrap items-center justify-end gap-2 sm:gap-3 md:gap-5 w-full md:w-auto">
 
-            
+            {/* Faculties select */}
             {window.location.pathname === "/all-faculties" && (
-              <div className="hidden md:block">
+              <div className="hidden lg:block">
                 <Select
                   defaultValue="kif"
                   style={{ width: "fit-content" }}
@@ -114,72 +113,71 @@ const Header = () => {
               </div>
             )}
 
-          
-            <div className="hidden md:flex nav-search rounded-[8px] border-[2px] border-[#1E1E1E1A] w-[20rem] p-[0.5rem_1rem] bg-white items-center gap-2 text-[#1E1E1E99] font-[500]">
-              <i className="fa-solid fa-magnifying-glass w-[1.125rem] h-[1.125rem]"></i>
+            {/* SEARCH (faqat md dan boshlab ko‘rinadi) */}
+            <div className="hidden md:flex nav-search rounded-[8px] border border-[#1E1E1E1A] w-[14rem] lg:w-[20rem] p-[0.4rem_0.8rem] bg-white items-center gap-2 text-[#1E1E1E99] font-[500]">
+              <i className="fa-solid fa-magnifying-glass"></i>
               <input
                 type="text"
                 value={searchText}
                 placeholder="Qidiruv"
                 onChange={(e) => handleSearchInput(e)}
-                className="outline-none border-none text-black placeholder:text-[#1E1E1E99]"
+                className="outline-none border-none text-black placeholder:text-[#1E1E1E99] w-full bg-transparent"
               />
             </div>
 
-            
+            {/* Fullscreen */}
             <div
               onClick={toggleFullScreen}
-              className="hidden md:flex cursor-pointer border border-[#1E1E1E33] p-2 items-center justify-center rounded-[0.375rem]"
+              className="hidden md:flex cursor-pointer border border-[#1E1E1E33] p-2 items-center justify-center rounded-md"
             >
-              <i className="fa-solid fa-expand text-[1.2rem]"></i>
+              <i className="fa-solid fa-expand text-[1rem] md:text-[1.2rem]"></i>
             </div>
 
-            
-            <div className="flex items-center gap-2">
+            {/* Select group */}
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-2">
 
-              <div className=" sm:block">
-                <Select
-                  defaultValue={"2024-2025"}
-                  style={{ width: "fit-content" }}
-                  options={academicYears}
-                />
-              </div>
+              <Select
+                defaultValue={"2024-2025"}
+                size="small"
+                className="min-w-[90px] sm:min-w-[110px]"
+                options={academicYears}
+              />
 
-              <div className=" sm:block">
-                <Select
-                  defaultValue={2}
-                  style={{ width: "fit-content" }}
-                  options={semesters}
-                />
-              </div>
+              <Select
+                defaultValue={2}
+                size="small"
+                className="min-w-[70px] sm:min-w-[90px]"
+                options={semesters}
+              />
 
               <Select
                 defaultValue={"uzb"}
-                className="w-[80px] sm:w-[100px]"
+                size="small"
+                className="w-[80px] sm:w-[90px]"
               >
                 <Option value="uzb">
                   <div className="flex items-center gap-2">
-                    <img src={uzb} alt="UZB" style={{ width: 16 }} />
-                    UZB
+                    <img src={uzb} alt="UZB" className="w-4" />
+                    <span className=" sm:inline">UZB</span>
                   </div>
                 </Option>
                 <Option value="rus">
-                  <div className="flex items-center gap-2">
-                    <img src={rus} alt="RUS" style={{ width: 16 }} />
-                    RUS
+                  <div className="flex items-center ">
+                    <img src={rus} alt="RUS" className="w-4" />
+                    <span className=" sm:inline">RUS</span>
                   </div>
                 </Option>
                 <Option value="eng">
                   <div className="flex items-center gap-2">
-                    <img src={eng} alt="ENG" style={{ width: 16 }} />
-                    ENG
+                    <img src={eng} alt="ENG" className="w-4" />
+                    <span className=" sm:inline">ENG</span>
                   </div>
                 </Option>
               </Select>
             </div>
 
-          
-            <Dropdown menu={{ items }} placement="bottom">
+            {/* User dropdown */}
+            <Dropdown menu={{ items }} placement="bottomRight">
               <div className="cursor-pointer flex items-center gap-2">
                 <img
                   src={logoSrc}
@@ -188,15 +186,16 @@ const Header = () => {
                 />
 
                 <div className="hidden sm:block">
-                  <div className="text-[0.875rem] font-[500] text-[#1E1E1E]">
+                  <div className="text-[0.8rem] font-[500] text-[#1E1E1E]">
                     Admin
                   </div>
-                  <div className="text-[0.75rem] text-[#1E1E1EB2]">
+                  <div className="text-[0.7rem] text-[#1E1E1EB2]">
                     Admin
                   </div>
                 </div>
               </div>
             </Dropdown>
+
           </nav>
         </header>
       </div>

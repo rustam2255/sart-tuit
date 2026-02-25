@@ -115,10 +115,10 @@ const FacultyTeachers = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-7 gap-6 mb-12">
         <div className="lg:col-span-3">
-          <FacultyBarChart positions={positions?.data} />
+          <FacultyPieChart academicDegree={academicDegree?.data} />
         </div>
         <div className="lg:col-span-4">
-          <FacultyTeacherPosition positions={positions?.data} />
+          <CertificateOfTeachers departmentCertificates={departmentCertificates?.data} />
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
