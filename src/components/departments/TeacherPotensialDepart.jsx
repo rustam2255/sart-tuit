@@ -3,6 +3,7 @@ import HighchartsReact from "highcharts-react-official";
 import VariablePie from "highcharts/modules/variable-pie";
 
 VariablePie(Highcharts);
+
 const TeacherPotensialDepart = ({ teachersEmploymentForm }) => {
   const data = [
     {
@@ -18,10 +19,11 @@ const TeacherPotensialDepart = ({ teachersEmploymentForm }) => {
       color: "#FF8C33FF",
     },
   ];
+
   const options = {
     chart: {
       type: "variablepie",
-      height: "40%",
+      height: "40%", // desktop saqlanadi
     },
     title: {
       text: `KAFEDRA PROFESSOR-O'QITUVCHILAR SONI: ${teachersEmploymentForm?.teachers_count} nafar`,
@@ -29,7 +31,6 @@ const TeacherPotensialDepart = ({ teachersEmploymentForm }) => {
       style: {
         fontSize: "16px",
         fontWeight: "bold",
-        // textTransform: "uppercase",
       },
     },
     tooltip: {
@@ -75,10 +76,48 @@ const TeacherPotensialDepart = ({ teachersEmploymentForm }) => {
       },
       symbolHeight: 12,
     },
+
+    // 🔹 Mobile uchun responsive
+    responsive: {
+      rules: [
+        {
+          condition: { maxWidth: 640 },
+          chartOptions: {
+            chart: {
+              height: 360, // mobile uchun kattaroq
+              spacingLeft: 10,
+              spacingRight: 10,
+            },
+            title: {
+              style: { fontSize: "14px" },
+            },
+            plotOptions: {
+              variablepie: {
+                innerSize: "30%",
+                minPointSize: 20,
+                dataLabels: {
+                  style: {
+                    fontSize: "12px", // raqamlarni kichraytirish
+                    fontWeight: "bold",
+                  },
+                  distance: 10,
+                },
+              },
+            },
+            legend: {
+              layout: "horizontal",
+              align: "center",
+              verticalAlign: "bottom",
+              itemStyle: { fontSize: "12px" },
+            },
+          },
+        },
+      ],
+    },
   };
 
   return (
-    <div className="border-[1px] border-[rgba(232, 232, 232, 1)] p-6 rounded-lg">
+    <div className="border-[1px] border-[rgba(232,232,232,1)] p-6 rounded-lg">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

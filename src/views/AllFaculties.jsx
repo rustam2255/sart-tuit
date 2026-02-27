@@ -72,7 +72,6 @@ const AllFaculties = () => {
         />
       </div>
 
-      {/* Tabs container */}
       <div className="w-full overflow-x-hidden">
         <Tabs
           type="line"

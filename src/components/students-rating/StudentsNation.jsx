@@ -14,7 +14,7 @@ const StudentsNation = ({ foreignLocalData }) => {
       0
     );
 
-    // Mobil uchun font va minPointSize moslashuvi
+    
     const isMobile = window.innerWidth < 640;
     const pointSize = isMobile ? 50 : 70;
     const fontSize = isMobile ? "12px" : "16px";

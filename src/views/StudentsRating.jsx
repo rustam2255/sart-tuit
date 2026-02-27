@@ -128,7 +128,7 @@ const StudentsRating = () => {
 
   return (
     <div className="py-8  md:py-16 ">
-      {/* Charts Top Section */}
+    
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
         <div className="col-span-1 sm:col-span-1 lg:col-span-2">
           <StudentTotalChart />
@@ -141,38 +141,37 @@ const StudentsRating = () => {
         </div>
       </div>
 
-      {/* Courses Section */}
+     
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
         <AllCoursesStudents courseGropsData={courseGropsData?.data} />
         <CourseOfStudents courseGenderStudentsData={courseGenderStudentsData?.data} />
       </div>
 
-      {/* Students Addention Cards */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-12">
         {studentsAddentionData.map((item) => (
           <StudentsRatingCard key={item.id} item={item} />
         ))}
       </div>
 
-      {/* Residence & Social Status */}
+   
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
         <StudentsResidenceBar accommodation={accommodation?.data} />
         <RatingSocialStatus socialStatusData={socialStatusData?.data} />
       </div>
 
-      {/* Map Section */}
+      
       {regionGenderCountData && (
         <div className="mt-12">
           <MapRating regionGenderCountData={regionGenderCountData.data} />
         </div>
       )}
 
-      {/* Region Students */}
       <div className="mt-12">
         <RegionStudents regionCourseData={regionCourseData?.data} />
       </div>
 
-      {/* Nation & Country */}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
         <StudentsNation foreignLocalData={foreignLocalData?.data} />
         <StudentsCountry citizentshipData={citizentshipData?.data} />

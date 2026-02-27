@@ -72,34 +72,33 @@ const GiftedStudentsPie = ({ allAwardsGender }) => {
       symbolHeight: 12,
     },
 
-    // ======== RESPONSIVE SETTINGS ========
     responsive: {
       rules: [
         {
           condition: {
-            maxWidth: 480, // mobil ekranlar uchun
+            maxWidth: 480, 
           },
           chartOptions: {
             title: {
               style: {
-                fontSize: '14px', // title kichraytirildi
+                fontSize: '14px', 
               },
             },
             plotOptions: {
               variablepie: {
                 dataLabels: {
-                  distance: 20, // labellarni chartga yaqinlashtirish
+                  distance: 20, 
                   style: {
                     fontSize: '14px',
                   },
                 },
-                innerSize: '50%', // ichki radiusni kamaytirish
+                innerSize: '50%', 
                 borderWidth: 5,
               },
             },
             legend: {
               itemStyle: {
-                fontSize: '14px', // legend kichraytirildi
+                fontSize: '14px', 
               },
             },
           },

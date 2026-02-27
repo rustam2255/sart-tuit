@@ -147,7 +147,7 @@ const Departments = ({ newTabData }) => {
   return (
     <div className="py-16">
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 mb-2 sm:grid-cols-2 gap-6">
         <TeacherCountDepart departmentLocale={departmentLocale?.data} />
         <ForegnTeacherDepart departmentGlobal={departmentGlobal?.data} />
       </div>
@@ -164,15 +164,15 @@ const Departments = ({ newTabData }) => {
       </h1>
 
 
-      <div className="flex gap-6 justify-center sm:mb-12">
+      <div className="flex flex-col sm:flex-row gap-6 justify-center sm:mb-12">
         {facultyData.map((item) => (
           <DepartNameCard
             key={item.id}
             item={item}
             className="
-        w-full       
-        sm:w-1/2     
-        lg:w-1/5     
+        w-full        
+        sm:w-1/2      
+        lg:w-1/5      
       "
           />
         ))}

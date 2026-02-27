@@ -5,7 +5,7 @@ const FacultyPieChart = ({ academicDegree }) => {
   const options = {
     chart: {
       type: 'pie',
-      height: 400, // default desktop
+      height: 400, 
     },
     title: {
       text: `ILMIY DARAJALI PROFESSOR-O‘QITUVCHILAR: ${academicDegree?.all} nafar`,
@@ -27,7 +27,6 @@ const FacultyPieChart = ({ academicDegree }) => {
           enabled: true,
           allowOverlap: false,
           formatter() {
-            // Desktopda ko‘rsatadi, mobilda null
             return window.innerWidth > 640 ? this.point.y : null;
           },
           style: {

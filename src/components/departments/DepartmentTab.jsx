@@ -3,6 +3,7 @@ import TeacherColumnDepart from "./TeacherColumnDepart";
 import TeacherGenterDepart from "./TeacherGenterDepart";
 import TeacherPotensialDepart from "./TeacherPotensialDepart";
 import { Avatar, Table } from "antd";
+
 const columns = [
   {
     title: "№",
@@ -22,7 +23,6 @@ const columns = [
     ),
   },
 ];
-
 
 const DepartmentTab = ({
   addentionalInfo,
@@ -67,31 +67,32 @@ const DepartmentTab = ({
       text: "DOKTARANTLAR VA MUSTAQIL IZLANUVCHILAR SONI",
     },
   ];
+
   return (
     <>
-      <div className="grid grid-cols-2 gap-6 my-12">
-        <TeacherPotensialDepart
-          teachersEmploymentForm={teachersEmploymentForm}
-        />
-        <TeacherGenterDepart
-          teachersEmploymentGenders={teachersEmploymentGenders}
-        />
+      {/* 🔹 Responsive flex-grid: mobile vertical, desktop original */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-12">
+        <TeacherPotensialDepart teachersEmploymentForm={teachersEmploymentForm} />
+        <TeacherGenterDepart teachersEmploymentGenders={teachersEmploymentGenders} />
       </div>
-      <div className="grid grid-cols-4 gap-6 mb-10">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         {data.map((item) => {
           return <DepartCard key={item.id} item={item} />;
         })}
       </div>
-      <div id="department-tab" className="grid grid-cols-3 gap-6 my-12">
-        <div className="col-span-1">
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-12">
+        {/* Mobile: table 100% width, chart alohida qatorda */}
+        <div className="col-span-1 md:col-span-1">
           <Table
             dataSource={dataSource}
             columns={columns}
-            pagination={false} 
+            pagination={false}
             bordered
           />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-1 md:col-span-2">
           <TeacherColumnDepart teacherPositions={teacherPositions} />
         </div>
       </div>

@@ -224,13 +224,9 @@ const SocialStatus = () => {
       <div className="overflow-x-auto md:overflow-x-hidden">
         <Tabs
           type="line"
-          tabBarGutter={145}
-          tabBarStyle={{
-            display: "flex",
-            justifyContent: "space-around",
-            width: "100%",
-            flex: "1",
-          }}
+          tabBarGutter={20}
+          moreIcon={null}
+          className="responsive-tabs w-full overflow-x-hidden"
           activeKey={activeTab}
           onChange={onTabChange}
         >

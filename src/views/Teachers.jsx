@@ -72,8 +72,7 @@ const Teachers = () => {
     <>
       <div className="py-10 sm:py-12 md:py-16">
 
-        {/* Breadcrumb */}
-        <div className="mb-5 ml-2 flex items-center gap-4">
+                <div className="mb-5 ml-2 flex items-center gap-4">
           <Breadcrumb
             style={{
               fontSize: "18px",
@@ -97,7 +96,7 @@ const Teachers = () => {
           />
         </div>
 
-        {/* 1-qator */}
+        
         <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 md:gap-6 mb-10 md:mb-12">
           <div className="lg:col-span-3">
             <TeacherPosition teacherPosition={teacherPosition?.data} />
@@ -107,14 +106,14 @@ const Teachers = () => {
           </div>
         </div>
 
-        {/* 2-qator */}
+        
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-12">
           <MaleAndFemale teacherAcademicDegree={teacherAcademicDegree?.data} />
           <CivilTeachers teacherGender={teacherGender?.data} />
           <ManagementStaff teacherPolitics={teacherPolitics?.data} />
         </div>
 
-        {/* 3-qator */}
+        
         <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 md:gap-6">
           <div className="lg:col-span-3">
             <FacultyCountTeachers facultyData={facultyData} />

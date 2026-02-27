@@ -72,14 +72,13 @@ const GiftedStudents = () => {
 
   return (
     <div className="py-16">
-      {/* Responsive 1-4 columns for cards */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
         {cardData.map((item) => (
           <GiftedStudentsCard key={item.id} item={item} type={item.type} />
         ))}
       </div>
 
-      {/* Responsive 1-2 columns for pies/info */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-12">
         {allAwardsGender?.data && (
           <GiftedStudentsPie allAwardsGender={allAwardsGender.data} />

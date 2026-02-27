@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import VariablePie from "highcharts/modules/variable-pie";
@@ -19,24 +20,34 @@ const data = [
 VariablePie(Highcharts);
 
 const ForegnTeacherDepart = ({ departmentGlobal }) => {
-  const newData = departmentGlobal?.map((item, index) => ({
-    name: item?.department_name,
-    y: item?.count,
-    color: data[index]?.color || "#ccc",
-  })) || [];
+  const [isMobile, setIsMobile] = useState(false);
 
-  const totalTeachers = departmentGlobal?.reduce((sum, item) => sum + item.count, 0);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 640);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const newData = departmentGlobal?.map((d, i) => ({
+    name: d.department_name,
+    y: d.count,
+    color: data[i]?.color,
+  }));
 
   const options = {
     chart: {
       type: "variablepie",
-      height: "100%", // container o‘lchamiga moslashadi
+      height: isMobile ? 500 : "45%", // 🔹 mobile uchun kattaroq height
     },
     title: {
-      text: `KAFEDRALAR BO‘YICHA XORIJIY PROFESSOR-O‘QITUVCHILAR SONI: ${totalTeachers} nafar`,
+      text: `KAFEDRALAR BO‘YICHA XORIJIY PROFESSOR-O‘QITUVCHILAR SONI: ${departmentGlobal?.reduce(
+        (sum, item) => sum + item.count,
+        0
+      )} nafar`,
       align: "left",
       style: {
-        fontSize: "16px",
+        fontSize: isMobile ? "14px" : "16px", // mobile title kichrayadi
         fontWeight: "bold",
       },
     },
@@ -49,8 +60,8 @@ const ForegnTeacherDepart = ({ departmentGlobal }) => {
     },
     series: [
       {
-        minPointSize: 70,
-        innerSize: "40%",
+        minPointSize: 50, // 🔹 mobile uchun kichik segmentlar ham ko‘rinadi
+        innerSize: isMobile ? "55%" : "40%", // 🔹 mobile ichki radius kattaroq
         zMin: 0,
         name: "teachers",
         data: newData,
@@ -62,7 +73,7 @@ const ForegnTeacherDepart = ({ departmentGlobal }) => {
         borderRadius: "8%",
         borderWidth: 8,
         dataLabels: {
-          enabled: true,
+          enabled: !isMobile ? true : false, // 🔹 mobile da sonlar o‘chadi
           format: "{point.y}",
           style: {
             fontSize: "18px",
@@ -74,49 +85,20 @@ const ForegnTeacherDepart = ({ departmentGlobal }) => {
       },
     },
     legend: {
-      layout: "vertical",
-      align: "right",
-      verticalAlign: "middle",
+      layout: isMobile ? "horizontal" : "vertical", // 🔹 mobile pastga, desktop vertical
+      align: isMobile ? "center" : "right",
+      verticalAlign: isMobile ? "bottom" : "middle",
       itemStyle: {
         fontWeight: "bold",
-        fontSize: "14px",
+        fontSize: isMobile ? "12px" : "14px",
       },
       symbolHeight: 12,
-    },
-    responsive: {
-      rules: [
-        {
-          condition: { maxWidth: 768 }, // mobil ekranlar uchun
-          chartOptions: {
-            chart: { height: "60%" },
-            title: { style: { fontSize: "14px" } },
-            plotOptions: {
-              variablepie: {
-                dataLabels: {
-                  style: { fontSize: "14px" },
-                  distance: 10,
-                },
-              },
-            },
-            legend: {
-              layout: "horizontal",
-              align: "center",
-              verticalAlign: "bottom",
-              itemStyle: { fontSize: "12px" },
-            },
-          },
-        },
-      ],
     },
   };
 
   return (
-    <div className="border-[1px] border-[rgba(232,232,232,1)] p-6 rounded-lg w-full h-[500px] sm:h-[400px] md:h-[450px]">
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={options}
-        containerProps={{ style: { width: "100%", height: "100%" } }}
-      />
+    <div className="border-[1px] border-[rgba(232, 232, 232, 1)] p-6 rounded-lg">
+      <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
 };

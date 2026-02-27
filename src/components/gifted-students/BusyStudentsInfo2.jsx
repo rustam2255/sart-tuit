@@ -79,23 +79,22 @@ const BusyStudentsInfo2 = ({ courseGenderEmp }) => {
       symbolHeight: 12,
     },
 
-    // ======== RESPONSIVE SETTINGS ========
     responsive: {
       rules: [
         {
           condition: {
-            maxWidth: 480, // mobil ekranlar uchun
+            maxWidth: 480, 
           },
           chartOptions: {
             title: {
               style: {
-                fontSize: '14px', // mobilga title kichraytirildi
+                fontSize: '14px', 
               },
             },
             plotOptions: {
               column: {
                 dataLabels: {
-                  distance: 30, // label masofasi qisqarildi
+                  distance: 30, 
                   style: {
                     fontSize: '12px',
                   },
@@ -105,7 +104,7 @@ const BusyStudentsInfo2 = ({ courseGenderEmp }) => {
             },
             legend: {
               itemStyle: {
-                fontSize: '12px', // legend fonti kichraytirildi
+                fontSize: '12px', 
               },
             },
           },

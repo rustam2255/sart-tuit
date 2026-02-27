@@ -85,7 +85,7 @@ const Header = () => {
               className="w-[3rem] h-[3rem] sm:w-[3.5rem] sm:h-[3.5rem] md:w-[3.9rem] md:h-[3.9rem] object-cover"
             />
 
-            <div className="hidden lg:block">
+            <div className=" lg:block">
               <div className="text-[0.75rem] md:text-[0.857rem] text-[#1E1E1EB2] font-[500] uppercase">
                 MUHAMMAD AL-XORAZMIY NOMIDAGI
               </div>
@@ -96,7 +96,7 @@ const Header = () => {
           </div>
 
           {/* NAV */}
-          <nav className="flex flex-wrap md:flex-nowrap items-center justify-end gap-2 sm:gap-3 md:gap-5 w-full md:w-auto">
+          <nav className="flex md:flex-nowrap items-center justify-start md:justify-end gap-2 sm:gap-3 md:gap-5 w-full md:w-auto overflow-x-auto md:overflow-visible">
 
             {/* Faculties select */}
             {window.location.pathname === "/all-faculties" && (

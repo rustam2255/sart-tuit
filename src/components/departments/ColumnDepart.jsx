@@ -91,7 +91,7 @@ const ColumnDepart = ({ departmentAcademicPercentage }) => {
       rules: [
         {
           condition: {
-            maxWidth: 768, // mobil ekranlar uchun
+            maxWidth: 768, 
           },
           chartOptions: {
             title: {

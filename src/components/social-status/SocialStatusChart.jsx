@@ -30,63 +30,63 @@ const SocialStatusChart = ({ socialStudents }) => {
     }
   })
 
-  const options = {
-    chart: {
-      type: "variablepie",
-      height: "95%",
+const options = {
+  chart: {
+    type: "variablepie",
+    height: window.innerWidth <= 768 ? "130%" : "95%", 
+  },
+  title: {
+    text: `TALABALARNING IJTIMOIY HOLATI: ${socialStudents?.reduce((sum, item) => sum + item.students, 0)}`,
+    align: "left",
+    style: {
+      fontSize: "16px",
+      fontWeight: "bold",
     },
-    title: {
-      text: `TALABALARNING IJTIMOIY HOLATI: ${socialStudents?.reduce((sum, item) => sum + item.students, 0)}`,
-      align: "left",
-      style: {
-        fontSize: "16px",
-        fontWeight: "bold",
-      },
-    },
-    tooltip: {
-      headerFormat: "",
-      pointFormat:
-        '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
-        "Soni: <b>{point.y}</b><br/>" +
-        "Foizi: <b>{point.percentage:.1f}%</b><br/>",
-    },
-    series: [
-      {
-        minPointSize: 70,
-        innerSize: "40%",
-        zMin: 10,
-        name: "teachers",
-        data: arr,
-      },
-    ],
-    plotOptions: {
-      variablepie: {
-        cursor: "pointer",
-        borderRadius: "10%",
-        borderWidth: 0,
-        dataLabels: {
-          enabled: true,
-          format: "{point.y}",
-          style: {
-            fontSize: "18px",
-            fontWeight: "bold",
-          },
-          distance: 50,
+  },
+  tooltip: {
+    headerFormat: "",
+    pointFormat:
+      '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+      "Soni: <b>{point.y}</b><br/>" +
+      "Foizi: <b>{point.percentage:.1f}%</b><br/>",
+  },
+  series: [
+    {
+      minPointSize: 70,
+      innerSize: "40%",
+      zMin: 10,
+      name: "teachers",
+      data: arr,
+      dataLabels: {
+        enabled: window.innerWidth > 768, 
+        format: "{point.y}",
+        style: {
+          fontSize: "18px",
+          fontWeight: "bold",
         },
-        showInLegend: true,
+        distance: 50,
       },
     },
-    legend: {
-      layout: "horizantal",
-      align: "center",
-      verticalAlign: "bottom",
-      itemStyle: {
-        fontWeight: "bold",
-        fontSize: "14px",
-      },
-      symbolHeight: 12,
+  ],
+  plotOptions: {
+    variablepie: {
+      cursor: "pointer",
+      borderRadius: "10%",
+      borderWidth: 0,
+      showInLegend: true,
     },
-  };
+  },
+  legend: {
+    layout: "horizontal",
+    align: "center",
+    verticalAlign: "bottom",
+    itemStyle: {
+      fontWeight: "bold",
+      fontSize: "14px",
+    },
+    symbolHeight: 12,
+  },
+};
 
   return (
     <div className="border-[1px] border-[rgba(232, 232, 232, 1)] p-6 rounded-lg">
